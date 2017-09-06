@@ -39,12 +39,11 @@ var orm = {
   */
 
   insertOne: function(table, tableCol, tableColVal, cb){
-    var queryStr = "INSERT INTO ?? (??) VALUES (?)";
+    var queryStr = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
     connect.query(queryStr,
-    [table, tableCol, tableColVal],
+    [table, tableCol, "devoured", tableColVal, FALSE],
     function(err, data){
       if(err) throw err;
-
       cb(data);
     }); //end query to the db
   }, //end insertOne function
@@ -60,13 +59,12 @@ var orm = {
       that you wish to update
   */
 
-  updateOne: function(table, tableCol, tableColVal, condition, cb){
-    var queryStr = "UPDATE ?? SET ?? = ? WHERE ??";
+  updateOne: function(tableCol, tableColVal, tblCol2, tableColVal2, condition, cb){
+    var queryStr = "UPDATE burgers SET ?? = ?, ?? = ? WHERE ??";
     connect.queryStr(queryStr,
-      [table, tableCol, tableColVal, condition],
+      [tblCol, tableColVal, tblCol2, tableColVal2, condition],
       function(err, data){
           if (err) throw err;
-
           cb(data);
       }); //end query to db
 };//end orm object of functions
