@@ -66,8 +66,10 @@ var orm = {
       function(err, data){
           if (err) throw err;
           cb(data);
-      }); //end query to db
-};//end orm object of functions
+        }); //end query to db
+    } //end updateOne function
+
+}//end orm object of functions
 
 
 //export the object to use in our models file
