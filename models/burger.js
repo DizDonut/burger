@@ -8,13 +8,13 @@ var burgers = {
     });//end orm.selectAll function
   },//end all function
 
-  insert: function(tbl,tblCol,tblColVal,cb){
-    orm.insertOne("burgers", "burger_name", tblColVal, function(res){
+  insert: function(tblColVal,cb){
+    orm.insertOne(tblColVal, function(res){
       cb(res);
     });//end orm.insertOne function
   },//end insert function
 
-  update: function(tbl, tblCol, tblColVal, condition, cb){
+  update: function(tblCol, tblColVal, condition, cb){
     orm.updateOne("burgers", tblCol, tblColVal, condition, function(res){
       cb(res);
     });//end orm.updateone function

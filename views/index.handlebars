@@ -1,0 +1,29 @@
+<div class="title">
+  <h1 style="text-align: center">Eat Da Burger</h1>
+</div>
+
+<form class="create-update-form" action="/" method="POST">
+
+  <div style=""class="form-group">
+    <label for="brg">Enter the Name of a Burger You want to Devour! </label>
+    <input type="text" id="brg" name="burger_name">
+  </div>
+
+  <button style="" type="submit">Add Burger</button>
+</form>
+
+
+<div class="left-container">
+  <ul style="text-align: left">
+    {{#each burgers}}
+      <div class="not-devoured">
+        <p style="border-style:solid; width:25%; padding:10px; background-color:#E6E6FA">
+          {{this.id}}: {{this.burger_name}}
+        </p>
+        <form class="devour" action="/{{this.id}}?_method=PUT" method="POST">
+          <button type="button" name="devour">Devour It!</button>
+        </form>
+      </div>
+    {{/each}}
+  </ul>
+</div>

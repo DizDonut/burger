@@ -12,18 +12,16 @@ router.get("/", function(req, res){
       burgers: data
     };
     //render that object to the index file
-    res.render("index", data);
+    res.render("index", indxObj);
   }) //end burger.all function
 }) //end get function
 
 router.post("/", function(req, res){
-  burger.insertOne([
-    "burger_name", "devoured"
-  ],[
-    req.body.burger_name, req.body.devoured
-  ]), function(){
+  burger.insert([
+    req.body.burger_name
+  ], function(){
     res.redirect("/");
-  };
+  });
 });
 
 router.put("/:id", function(req, res){
@@ -31,11 +29,11 @@ router.put("/:id", function(req, res){
 
   console.log("Condition: " + condition);
 
-  burger.updateOne("burger_name",
-    req.body.burger_name, "devoured", req.body.devoured, condition
-  ), function(){
+  burger.updateOne([
+    "burger_name",req.body.burger_name, "devoured", req.body.devoured, condition
+  ], function(){
     res.redirect("/");
-  };
+  });
 });
 
 module.exports = router;

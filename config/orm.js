@@ -18,9 +18,7 @@ var orm = {
 
   selectAll: function(type, table, cb){
     var queryStr = "SELECT ?? FROM ??";
-    connect.query(queryStr,
-    [type, table],
-    function(err, data){
+    connect.query(queryStr, [type, table], function(err, data){
       if(err) throw err;
 
       cb(data);
@@ -38,10 +36,9 @@ var orm = {
       specified by the tableCol param
   */
 
-  insertOne: function(table, tableCol, tableColVal, cb){
+  insertOne: function(tableColVal, cb){
     var queryStr = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
-    connect.query(queryStr,
-    [table, tableCol, "devoured", tableColVal, FALSE],
+    connect.query(queryStr,["burgers", "burger_name", "devoured", tableColVal, 0],
     function(err, data){
       if(err) throw err;
       cb(data);
